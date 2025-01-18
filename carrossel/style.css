@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+}
+
+header {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #000000;
+}
+
+.header {
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+
+.slider{
+    flex: 1;
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+}
+
+.slider-width {
+    position: relative;
+    display: flex;
+    height: 100%;
+    /* property name | duration | timing function | delay */
+    transition: margin-left 0.6s ease;
+    
+}
+
+.slider-item {
+    /* A propriedade flex abaixo indica que cada item terá 100% da largura do container pai*/
+    /* flex-grow | flex-shrink | flex-basis */
+    flex: 0 0 100vw;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.slider-item h1{
+    color: white;
+    margin-bottom: 100px;
+    font-size: 5rem;
+}
+
+.control {
+    display: flex;
+    position: absolute;
+    z-index: 99;
+    top: 50%;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    padding: 10px;
+    transition: background-color 0.4s ease-in-out;
+}
+
+.control:hover{
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.control-next {
+    right: 50px;
+}
+
+.control-prev {
+    left: 50px;
+}
+
+
