@@ -16,17 +16,17 @@
             <h1>Crie sua conta</h1>
 
             <form class="form-validator" action="index.html" method="POST">
-                <div class="group-form">
-                    <label class="form-label" for="name" data-rules="required">Seu nome</label>
-                    <input class="form-input" type="text" name="name" id="name">
+                <div class="form-name group-form">
+                    <label class="form-label" for="name">Seu nome completo</label>
+                    <input class="form-input" type="text" name="name" id="name" data-rules="required">
                 </div>
-                <div class="group-form">
+                <div class="form-email group-form">
                     <label class="form-label" for="email">Seu e-mail</label>
-                    <input class="form-input" type="email" name="email" id="email">
+                    <input class="form-input" type="text" name="email" id="email" data-rules="required|email">
                 </div>
-                <div class="group-form">
+                <div class="form-password group-form">
                     <label class="form-label" for="senha">Sua senha</label>
-                    <input class="form-input" type="password" name="senha" id="senha">
+                    <input class="form-input" type="password" name="senha" id="senha" data-rules="min=8|upperCase=1">
                 </div>
                 <button type="submit">Cadastrar</button>
                 <div class="have-account">

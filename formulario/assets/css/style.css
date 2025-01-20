@@ -80,3 +80,13 @@ button {
 .have-account{
     margin-top: 1rem;
 }
+
+.form-error{
+    border-color: red;
+}
+
+.error{
+    font-size: 11px;
+    padding: 5px 0px 0px 0px;
+    color: red;
+}
