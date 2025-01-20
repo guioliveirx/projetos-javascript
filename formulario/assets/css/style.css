@@ -66,19 +66,30 @@ form {
 
 button {
     display: block;
-    margin: 2rem auto;
+    width: 100%;
     border: 0;
-    background-color: blue;
+    background-color: #1d4ed8;
     color: white;
-    padding:0.8rem 1.3rem;
+    padding:0.7rem 1.2rem;
     border-radius: 0.4rem;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
-    font-weight: 600;
+    font-weight: 900;
+    margin-top: 30px;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #1e40af;
 }
 
 .have-account{
     margin-top: 1rem;
+
+    p{
+        font-size: 14px;
+    }
 }
 
 .form-error{
@@ -89,4 +100,64 @@ button {
     font-size: 11px;
     padding: 5px 0px 0px 0px;
     color: red;
+}
+
+@media (640px < width <= 960px){
+    .screen {
+        flex-direction: column;
+    }
+
+    .right-side{
+        border-radius: 0 0 1rem 1rem;
+        max-width: none;
+    }
+
+    .left-side{
+        border-radius: 1rem 1rem 0 0;
+        background-image: url("/assets/images/dandadan-serpo-alien-anime-hd-wallpaper-uhdpaper.com-585@3@b.jpg");
+    }
+}
+
+@media (380px < width <= 640px){
+    body{
+        padding: 10px;
+    }
+
+    .screen {
+        flex-direction: column;
+    }
+
+    .right-side{
+        border-radius: 0 0 1rem 1rem;
+        max-width: none;
+        padding: 20px;
+        flex: 2;
+    }
+
+    .left-side{
+        border-radius: 1rem 1rem 0 0;
+        background-image: url("/assets/images/dandadan-serpo-alien-anime-hd-wallpaper-uhdpaper.com-585@3@b.jpg");
+    }
+}
+
+@media (width <= 380px){
+    body{
+        padding: 0;
+    }
+
+    .screen {
+        flex-direction: column;
+    }
+
+    .right-side{
+        border-radius: 0;
+        max-width: none;
+        padding: 10px;
+        flex: 2;
+    }
+
+    .left-side{
+        border-radius: 0;
+        background-image: url("/assets/images/dandadan-serpo-alien-anime-hd-wallpaper-uhdpaper.com-585@3@b.jpg");
+    }
 }
