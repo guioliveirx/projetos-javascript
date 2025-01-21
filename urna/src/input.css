@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .teclado-botao {
+      @apply flex justify-center items-center
+      bg-black w-20 h-16 text-white
+      text-2xl cursor-pointer rounded-md
+      shadow-slate-200 shadow-sm hover:shadow-none duration-300
+    }
+    .teclado-botao-principal {
+        @apply flex justify-center items-center w-28 rounded-md text-2xl shadow-sm hover:shadow-none duration-300 cursor-pointer;
+    }
+  }
