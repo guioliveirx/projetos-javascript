@@ -5,11 +5,11 @@
 @layer components {
     .teclado-botao {
       @apply flex justify-center items-center
-      bg-black w-20 h-16 text-white
+      bg-black w-16 h-14 text-white
       text-2xl cursor-pointer rounded-md
-      shadow-slate-200 shadow-sm hover:shadow-none duration-300
+      shadow-slate-500 shadow-sm hover:shadow-inner hover:shadow-slate-500 duration-500
     }
     .teclado-botao-principal {
-        @apply flex justify-center items-center w-28 rounded-md text-2xl shadow-sm hover:shadow-none duration-300 cursor-pointer;
+        @apply flex justify-center items-center w-28 rounded-md text-2xl shadow-slate-500 shadow-sm hover:shadow-inner duration-500 cursor-pointer hover:shadow-slate-500;
     }
   }
