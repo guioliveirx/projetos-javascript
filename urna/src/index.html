@@ -13,23 +13,23 @@
         <div id="tela" class="flex flex-col w-[450px] bg-gradient-to-r from-[#e8e8e8] to-[#c1c1c1] shadow-inner pl-5">
             <div class="flex-1 flex">
                 <div class="flex flex-col flex-1">
-                    <div class="h-12 flex items-center">
+                    <div id="votoPara" class="h-12 flex items-center">
                         <span>SEU VOTO PARA</span>
                     </div>
-                    <div class="flex items-center justify-center h-12 ">
+                    <div id="cargo" class="flex items-center justify-center h-20 ">
                         <span>VEREADOR</span>
                     </div>
-                    <div class="h-12 ">
-                        <div class="numero inline-block  h-12 w-10 border border-black text-center leading-[48px] text-2xl "></div>
-                        <div class="numero inline-block  h-12 w-10 border border-black leading-[48px] text-center text-2xl"></div>
+                    <div id="numeros" class="h-20">
+                        <div class="numero inline-block h-14 w-12 border border-black text-center leading-[48px] text-2xl "></div>
+                        <div class="numero inline-block  h-14 w-12 border border-black leading-[48px] text-center text-2xl"></div>
                     </div>
-                    <div class="flex-1 leading-7">
+                    <div id="descricao" class="flex-1 leading-7">
                         Nome: Guilherme <br>
                         Partido: BCT <br>
                         Vice-Prefeito: Louanderson
                     </div>
                 </div>
-                <div class="w-24 flex flex-col items-end">
+                <div id="candidatos" class="w-24 flex flex-col items-end">
                     <div class="border border-slate-900 text-center">
                         <img class="w-full" src="assets/images/prefeito.png" alt="">
                         Prefeito
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            <div class="h-12 text-xs border-t border-slate-900 pl-2">Aperte a tecla: <br>
+            <div id="aviso" class="h-12 text-xs border-t border-slate-900 pl-2">Aperte a tecla: <br>
                 Confirme para Confirmar este voto <br>
                 Corrige para Reiniciar o voto.</div>
         </div>
@@ -48,24 +48,24 @@
             class="bg-[#403A3A] ml-5 flex flex-col justify-center items-center p-5 shadow-black shadow-sm">
             <!-- Números -->
             <div class="grid grid-cols-3 justify-center items-center gap-3">
-                <div class="teclado-botao">1</div>
-                <div class="teclado-botao">2</div>
-                <div class="teclado-botao">3</div>
-                <div class="teclado-botao">4</div>
-                <div class="teclado-botao">5</div>
-                <div class="teclado-botao">6</div>
-                <div class="teclado-botao">7</div>
-                <div class="teclado-botao">8</div>
-                <div class="teclado-botao">9</div>
+                <div class="teclado-botao" onclick="clicou('1')">1</div>
+                <div class="teclado-botao" onclick="clicou('2')">2</div>
+                <div class="teclado-botao" onclick="clicou('3')">3</div>
+                <div class="teclado-botao" onclick="clicou('4')">4</div>
+                <div class="teclado-botao" onclick="clicou('5')">5</div>
+                <div class="teclado-botao" onclick="clicou('6')">6</div>
+                <div class="teclado-botao" onclick="clicou('7')">7</div>
+                <div class="teclado-botao" onclick="clicou('8')">8</div>
+                <div class="teclado-botao" onclick="clicou('9')">9</div>
                 <div class="col-span-3 flex justify-center items-center">
-                    <div class="teclado-botao">0</div>
+                    <div class="teclado-botao" onclick="clicou('0')">0</div>
                 </div>
             </div>
             <!-- Letras -->
             <div class="flex items-end gap-3 mt-10">
-                <div class="teclado-botao-principal h-14 bg-white text-black">Branco</div>
-                <div class="teclado-botao-principal h-14 bg-orange-500 text-black">Corrige</div>
-                <div class="teclado-botao-principal h-20 bg-emerald-500 text-black ">Confirma</div>
+                <div class="teclado-botao-principal h-14 bg-white text-black" onclick="branco()">Branco</div>
+                <div class="teclado-botao-principal h-14 bg-orange-500 text-black" onclick="corrige()">Corrige</div>
+                <div class="teclado-botao-principal h-20 bg-emerald-500 text-black "onclick="confirmar()">Confirma</div>
             </div>
         </div>
     </div>
