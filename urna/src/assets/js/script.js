@@ -5,6 +5,19 @@ let aviso = document.querySelector("#aviso");
 let candidatos = document.querySelector("#candidatos");
 let numeros = document.querySelector("#numeros");
 
+function clicou(number){
+    alert("Clicou em: " + number);
+}
 
+function branco() {
+    alert("Clicou em BRANCO!");
+}
 
-console.log(numerosTeclado);
+function corrige() {
+    alert("Clicou em Redefinir!");
+}
+
+function confirmar() {
+    alert("Voto CONFIRMADO!");
+}
+
