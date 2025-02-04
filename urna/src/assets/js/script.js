@@ -122,7 +122,7 @@ function confirmar() {
         if (etapas[etapaAtual] !== undefined) {
             comecarEtapa();
         } else {
-            console.log("FIM");
+            document.querySelector("#tela").innerHTML = `<div class="animate-pisca text-6xl font-bold flex justify-center items-center h-full">FIM!</div>`
         }
     }
 }
