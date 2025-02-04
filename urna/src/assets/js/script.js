@@ -34,6 +34,7 @@ function comecarEtapa() {
     numeros.innerHTML = numerosHtml;
 }
 
+// Atualiza a interface com as informações do candidato selecionado
 function atualizaInterface() {
     let etapa = etapas[etapaAtual];
     let candidato = etapa.candidatos.filter((item) => {
@@ -52,27 +53,29 @@ function atualizaInterface() {
 
         let fotosHtml = '';
 
+        // Itera sobre as fotos do candidato e cria o HTML para exibi-las
         for (let item of candidato.fotos) {
             if (item.small) {
-                fotosHtml += `<div class="border border-slate-900 text-center w-[80%]">
-                        <img class="w-full" src=${item.url} alt=${item.legenda}>
-                        ${item.legenda}</div>`
+                fotosHtml += `<div class="border border-slate-900 text-center w-full">
+                            <img class="w-full" src=${item.url} alt=${item.legenda}>
+                            ${item.legenda}</div>`;
             } else {
                 fotosHtml += `<div class="border border-slate-900 text-center w-full">
                             <img class="w-full" src=${item.url} alt=${item.legenda}>
-                            ${item.legenda}</div>`
+                            ${item.legenda}</div>`;
             }
         }
 
+        // Exibe as fotos do candidato
         imagemCandidatos.classList.add("block");
         imagemCandidatos.classList.remove("hidden");
         imagemCandidatos.innerHTML = fotosHtml;
     } else {
+        // Se nenhum candidato for encontrado, exibe "VOTO NULO"
         votoPara.style.display = "block";
         aviso.style.display = 'block';
         descricao.innerHTML = `<div class="animate-pisca text-2xl font-bold">VOTO NULO!</div>`;
     }
-
 }
 
 function clicou(number) {
@@ -90,9 +93,10 @@ function clicou(number) {
     }
 }
 
+// Função para votar em branco
 function branco() {
-    numero = '';
-    votoEmBranco = true;
+    numero = ''; // Limpa o número digitado
+    votoEmBranco = true; // Marca o voto como em branco
     votoPara.style.display = "block";
     aviso.style.display = 'block';
     descricao.innerHTML = `<div class="animate-pisca text-3xl font-bold text-center">VOTO EM BRANCO!</div>`;
@@ -101,10 +105,12 @@ function branco() {
     imagemCandidatos.classList.add("hidden");
 }
 
+// Função para corrigir o voto
 function corrige() {
-    comecarEtapa();
+    comecarEtapa(); // Reinicia a etapa atual
 }
 
+// Função para confirmar o voto
 function confirmar() {
     let etapa = etapas[etapaAtual];
     let votoConfirmado = false;
