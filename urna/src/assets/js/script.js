@@ -54,6 +54,10 @@ function atualizaInterface() {
         }
 
         imagemCandidatos.innerHTML = fotosHtml;
+    } else {
+        votoPara.style.display = "block";
+        aviso.style.display = 'block';
+        descricao.innerHTML = `<div class="animate-pisca text-2xl font-bold">VOTO NULO!</div>`;
     }
 
 }
