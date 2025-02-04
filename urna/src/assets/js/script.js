@@ -53,10 +53,15 @@ function atualizaInterface() {
         let fotosHtml = '';
 
         for (let item of candidato.fotos) {
-            console.log(item.url);
-            fotosHtml = `<div class="border border-slate-900 text-center w-full">
+            if (item.small) {
+                fotosHtml += `<div class="border border-slate-900 text-center w-[80%]">
                         <img class="w-full" src=${item.url} alt=${item.legenda}>
                         ${item.legenda}</div>`
+            } else {
+                fotosHtml += `<div class="border border-slate-900 text-center w-full">
+                            <img class="w-full" src=${item.url} alt=${item.legenda}>
+                            ${item.legenda}</div>`
+            }
         }
 
         imagemCandidatos.classList.add("block");
@@ -101,7 +106,25 @@ function corrige() {
 }
 
 function confirmar() {
-    alert("Voto CONFIRMADO!");
+    let etapa = etapas[etapaAtual];
+    let votoConfirmado = false;
+
+    if (votoEmBranco === true) {
+        votoConfirmado = true;
+        console.log("confirmando voto");
+    } else if (numero.length === etapa.numeros) {
+        votoConfirmado = true;
+        console.log("confirmando voto");
+    }
+
+    if (votoConfirmado) {
+        etapaAtual++;
+        if (etapas[etapaAtual] !== undefined) {
+            comecarEtapa();
+        } else {
+            console.log("FIM");
+        }
+    }
 }
 
 comecarEtapa();
