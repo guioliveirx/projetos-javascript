@@ -8,7 +8,7 @@ let etapas = [
                 nome: 'Narendra',
                 partido: 'ABC',
                 fotos:[
-                    {url:'../images/narendra.png', legenda: 'Vereador'}
+                    {url:'./assets/images/narendra.png', legenda: 'Vereador'}
                 ]
             },
             {
@@ -16,7 +16,7 @@ let etapas = [
                 nome: 'Nitish',
                 partido: 'DEFG',
                 fotos:[
-                    {url:'../images/nitish.png', legenda: 'Vereador'}
+                    {url:'./assets/images/nitish.png', legenda: 'Vereador'}
                 ]
             },
         ]
@@ -31,8 +31,8 @@ let etapas = [
                 partido: 'ABC',
                 vice: 'Rajnath',
                 fotos:[
-                    {url:'../images/rahul.png', legenda: 'Prefeito'},
-                    {url:'../images/rajnath.png', legenda: 'Vice-Prefeito', small: true}
+                    {url:'./assets/images/rahul.png', legenda: 'Prefeito'},
+                    {url:'./assets/images/rajnath.png', legenda: 'Vice-Prefeito', small: true}
                 ]
             },
             {
@@ -41,8 +41,8 @@ let etapas = [
                 partido: 'QWERTY',
                 vice: 'Smriti',
                 fotos:[
-                    {url:'../images/ravi.png', legenda: 'Prefeito'},
-                    {url:'../images/smriti.png', legenda: 'Vice-Prefeita', small: true}
+                    {url:'./assets/images/ravi.png', legenda: 'Prefeito'},
+                    {url:'./assets/images/smriti.png', legenda: 'Vice-Prefeita', small: true}
                 ]
             },
         ]
