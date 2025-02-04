@@ -7,10 +7,15 @@ let numeros = document.querySelector("#numeros");
 
 let etapaAtual = 0;
 let numero = '';
+let votoEmBranco = false;
 
 function comecarEtapa() {
     let etapa = etapas[etapaAtual];
     let numerosHtml = '';
+    numero = '';
+    votoEmBranco = false;
+    numeros.classList.add("block");
+    numeros.classList.remove("hidden");
 
     for (let i = 0; i < etapa.numeros; i++) {
         if (i === 0) {
@@ -24,7 +29,8 @@ function comecarEtapa() {
     cargo.innerHTML = etapa.titulo;
     descricao.innerHTML = '';
     aviso.style.display = 'none';
-    imagemCandidatos.innerHTML = '';
+    imagemCandidatos.classList.remove("block");
+    imagemCandidatos.classList.add("hidden");
     numeros.innerHTML = numerosHtml;
 }
 
@@ -53,6 +59,8 @@ function atualizaInterface() {
                         ${item.legenda}</div>`
         }
 
+        imagemCandidatos.classList.add("block");
+        imagemCandidatos.classList.remove("hidden");
         imagemCandidatos.innerHTML = fotosHtml;
     } else {
         votoPara.style.display = "block";
@@ -78,11 +86,18 @@ function clicou(number) {
 }
 
 function branco() {
-    alert("Clicou em BRANCO!");
+    numero = '';
+    votoEmBranco = true;
+    votoPara.style.display = "block";
+    aviso.style.display = 'block';
+    descricao.innerHTML = `<div class="animate-pisca text-3xl font-bold text-center">VOTO EM BRANCO!</div>`;
+    numeros.classList.remove("block");
+    numeros.classList.add("hidden");
+    imagemCandidatos.classList.add("hidden");
 }
 
 function corrige() {
-    alert("Clicou em Redefinir!");
+    comecarEtapa();
 }
 
 function confirmar() {
