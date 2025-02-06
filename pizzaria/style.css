@@ -104,18 +104,18 @@ h1 {
 .pizza-item a:hover .pizza-item--add {
     background-color:#244c88;
 }
-.pizza-item--price {
+.pizza-item-price {
     font-size:15px;
     color:#333;
     margin-top:5px;
 }
-.pizza-item--name {
+.pizza-item-name {
     font-size:20px;
     font-weight: bold;
     color:#000;
     margin-top:5px;
 }
-.pizza-item--desc {
+.pizza-item-desc {
     font-size:13px;
     color:#555;
     margin-top:10px;
