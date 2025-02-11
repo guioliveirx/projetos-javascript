@@ -64,3 +64,13 @@ function closeModal() {
         pizzaModal.style.display = "none";
     }, 500);
 }
+
+function onClickOutside() {
+    return (event) => {
+      if (event.target === event.currentTarget) {
+        closeModal();
+      }
+    }
+  }
+
+selector(".pizzaWindowArea").addEventListener("click", onClickOutside());
