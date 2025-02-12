@@ -74,3 +74,22 @@ function onClickOutside() {
   }
 
 selector(".pizzaWindowArea").addEventListener("click", onClickOutside());
+
+// Botão de diminuir a quantidade
+selector(".pizzaInfo--qtmenos").addEventListener("click", () => {
+    if(quantidadePizzasModal > 1){
+        quantidadePizzasModal--;
+    }
+    selector(".pizzaInfo--qt").innerHTML = quantidadePizzasModal;
+})
+
+// Botão de aumentar a quantidade
+selector(".pizzaInfo--qtmais").addEventListener("click", () => {
+    quantidadePizzasModal ++;
+    selector(".pizzaInfo--qt").innerHTML = quantidadePizzasModal;
+})
+
+// Botões de tamanho da pizza
+selectorAll(".pizzaInfo--size").forEach( (size, index) => {
+    
+});
