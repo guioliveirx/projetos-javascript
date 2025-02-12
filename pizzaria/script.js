@@ -1,6 +1,12 @@
 // Variável para armazenar a quantidade de pizzas de cada modal
 let quantidadePizzasModal;
 
+// Variável para armazenar todas as informações do modal
+let cart = [];
+
+// Variável para armazenar o index da pizza
+let key;
+
 // Função para extrair o elemento do DOM de forma simplificada;
 const selector = (element) => document.querySelector(element);
 const selectorAll = (element) => document.querySelectorAll(element);
@@ -27,7 +33,7 @@ pizzaJson.map( ( {id, name, img, price, sizes, description}, index) => {
         event.preventDefault();
         
         quantidadePizzasModal = 1;
-        let key = event.target.closest(".pizza-item").getAttribute("data-key");
+        key = event.target.closest(".pizza-item").getAttribute("data-key");
         let pizza = pizzaJson[key];
 
         // Informações do modal das pizzas
@@ -91,5 +97,23 @@ selector(".pizzaInfo--qtmais").addEventListener("click", () => {
 
 // Botões de tamanho da pizza
 selectorAll(".pizzaInfo--size").forEach( (size, index) => {
-    
+    // adiciona evento de click para todos os tamanhos
+    size.addEventListener("click", () => {
+        // Remove o elemento previamente selecionado e adiciona no elemento clicado
+        selector(".pizzaInfo--size.selected").classList.remove("selected");
+        size.classList.add("selected");
+    });
+});
+
+// Botão de adicionar ao carrinho
+selector(".pizzaInfo--addButton").addEventListener("click", () => {
+    let keySize = parseInt( selector(".pizzaInfo--size.selected").getAttribute("data-key") ); 
+
+    cart.push({
+        id: pizzaJson[key].id, 
+        size: keySize, 
+        amount: quantidadePizzasModal
+    });
+
+    closeModal();
 });
