@@ -125,40 +125,42 @@ selector(".pizzaInfo--addButton").addEventListener("click", () => {
         });
     }
 
-    // Atualiza e fecha o carrinho
     updateCart();
     closeModal();
 });
 
-// Exibe o conteudo do carrinho quando clicado no mobile
+// Exibe o modal do carrinho quando clicado no botão de carrinho no mobile
 selector(".menu-openner").addEventListener("click", () => {
     if(cart.length > 0){
         selector("aside").style.left = 0;
     }
 });
 
-// Fecha o conteudo do carrinho quando clicado no mobile
+// Fecha o modal do carrinho quando clicado no botão de carrinho no mobile
 selector(".menu-closer").addEventListener("click", () => selector("aside").style.left = "100vw");
 
 function updateCart() {
-    // Atualiza a quantidade no carrinho Mobile
+    // Atualiza a quantidade de itens do carrinho no mobile
     selector(".menu-openner span").innerHTML = cart.length;
 
+    // Verifica se há itens no carrinho
     if( cart.length > 0 ) {
         selector("aside").classList.add("show");
         selector(".cart").innerHTML = '';
 
-        // Variáveis para a soma dos produtos das pizzas
+        // Variáveis que serão adicionados nos elementos HTML do modal do carrinho
         let subtotal = 0;
         let total = 0;
         let desconto = 0;
 
+        // Percorre o array de objetos do carrinho para adicionar todas as pizzas selecionadas, no carrinho
         cart.map( (pizza, index) => {
-
-            // Verifica qual pizza do array corresponde com a pizza escolhida
+            // Verifica as informações correspondentes das pizzas selecionas
             let pizzaItem = pizzaJson.find((item) => item.id == pizza.id);
+
             subtotal += pizzaItem.price * pizza.amount;
-            // Crio um nó da estrutura do carrinho para adicionar as informações
+
+            // Cria um nó da estrutura do carrinho para adicionar as informações
             let cartItem = selector(".models .cart--item").cloneNode(true);
             // Com base no tamanho selecionado, irá ser concatenado o seu tamanho ao seu nome
             let pizzaSize;
@@ -175,7 +177,7 @@ function updateCart() {
             }
             let pizzaName = `${pizzaItem.name} (${pizzaSize})`
 
-            // Adiciona os conteúdos do carrinho de compra
+            // Estrutura o conteúdos das pizzas e os adicionas no modal do carrinho
             cartItem.querySelector("img").src = pizzaItem.img;
             cartItem.querySelector(".cart--item-nome").innerHTML = pizzaName;
             cartItem.querySelector(".cart--item--qt").innerHTML = pizza.amount;
