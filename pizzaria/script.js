@@ -15,7 +15,7 @@ let pizzaHtml = selector(".pizza-area");
 let pizzaModal = selector(".pizzaWindowArea");
 
 // Percorre o array de objetos "pizzaJson" e realiza uma ação em cada um deles.
-pizzaJson.map( ( {id, name, img, price, sizes, description}, index) => {
+pizzaJson.map(({ id, name, img, price, sizes, description }, index) => {
     // .cloneNode, clone a estrutura de um documento e todos os descendentes dele.
     let pizzaItem = selector(".models .pizza-item").cloneNode(true);
 
@@ -31,7 +31,7 @@ pizzaJson.map( ( {id, name, img, price, sizes, description}, index) => {
     // Evento de click para o modal aparecer quando clicar na pizza
     pizzaItem.querySelector("a").addEventListener('click', (event) => {
         event.preventDefault();
-        
+
         quantidadePizzasModal = 1;
         key = event.target.closest(".pizza-item").getAttribute("data-key");
         let pizza = pizzaJson[key];
@@ -42,8 +42,8 @@ pizzaJson.map( ( {id, name, img, price, sizes, description}, index) => {
         selector(".pizzaInfo--desc").innerHTML = pizza.description;
         selector(".pizzaInfo--actualPrice").innerHTML = `R$ ${pizza.price.toFixed(2)}`
         selector(".pizzaInfo--size.selected").classList.remove("selected");
-        selectorAll(".pizzaInfo--size span").forEach( (size, index) => {
-            if( index === 2 ) {
+        selectorAll(".pizzaInfo--size span").forEach((size, index) => {
+            if (index === 2) {
                 size.closest(".pizzaInfo--size").classList.add("selected");
             }
             size.innerHTML = sizes[index];
@@ -53,37 +53,37 @@ pizzaJson.map( ( {id, name, img, price, sizes, description}, index) => {
         // Animação de fade-in para a exibição do modal
         pizzaModal.style.display = "flex";
         pizzaModal.style.opacity = 0;
-        setTimeout( () => {
+        setTimeout(() => {
             pizzaModal.style.opacity = 1;
         }, 200)
 
     });
 
     // Adiciona o conteúdo das pizzas no "pizzaHtml"
-    pizzaHtml.append( pizzaItem );
+    pizzaHtml.append(pizzaItem);
 });
 
 // Eventos MODAL
 function closeModal() {
     pizzaModal.style.opacity = 0;
-    setTimeout( () => {
+    setTimeout(() => {
         pizzaModal.style.display = "none";
     }, 500);
 }
 
 function onClickOutside() {
     return (event) => {
-      if (event.target === event.currentTarget) {
-        closeModal();
-      }
+        if (event.target === event.currentTarget) {
+            closeModal();
+        }
     }
-  }
+}
 
 selector(".pizzaWindowArea").addEventListener("click", onClickOutside());
 
 // Botão de diminuir a quantidade
 selector(".pizzaInfo--qtmenos").addEventListener("click", () => {
-    if(quantidadePizzasModal > 1){
+    if (quantidadePizzasModal > 1) {
         quantidadePizzasModal--;
     }
     selector(".pizzaInfo--qt").innerHTML = quantidadePizzasModal;
@@ -91,12 +91,12 @@ selector(".pizzaInfo--qtmenos").addEventListener("click", () => {
 
 // Botão de aumentar a quantidade
 selector(".pizzaInfo--qtmais").addEventListener("click", () => {
-    quantidadePizzasModal ++;
+    quantidadePizzasModal++;
     selector(".pizzaInfo--qt").innerHTML = quantidadePizzasModal;
 })
 
 // Botões de tamanho da pizza
-selectorAll(".pizzaInfo--size").forEach( (size, index) => {
+selectorAll(".pizzaInfo--size").forEach((size, index) => {
     // adiciona evento de click para todos os tamanhos
     size.addEventListener("click", () => {
         // Remove o elemento previamente selecionado e adiciona no elemento clicado
@@ -107,13 +107,25 @@ selectorAll(".pizzaInfo--size").forEach( (size, index) => {
 
 // Botão de adicionar ao carrinho
 selector(".pizzaInfo--addButton").addEventListener("click", () => {
-    let keySize = parseInt( selector(".pizzaInfo--size.selected").getAttribute("data-key") ); 
+    let keySize = parseInt(selector(".pizzaInfo--size.selected").getAttribute("data-key"));
 
-    cart.push({
-        id: pizzaJson[key].id, 
-        size: keySize, 
-        amount: quantidadePizzasModal
-    });
+    // Cria uma idenficação única para cada pizza do array "cart";
+    let identifier = pizzaJson[key].id + "@" + keySize;
+
+    // Verifica se a pizza que o usuario está adicionando é igual a alguma que já foi adicionada
+    let verify = cart.findIndex((item) => item.identifier == identifier);
+
+    // Caso encontre, suas quantidades serão somadas, caso contrário, sera adicionada ao array "cart"
+    if (verify > -1) {
+        cart[verify].amount += quantidadePizzasModal;
+    } else {
+        cart.push({
+            identifier,
+            id: pizzaJson[key].id,
+            size: keySize,
+            amount: quantidadePizzasModal
+        });
+    }
 
     closeModal();
 });
