@@ -148,15 +148,19 @@ function updateCart() {
         selector("aside").classList.add("show");
         selector(".cart").innerHTML = '';
 
+        // Variáveis para a soma dos produtos das pizzas
         let subtotal = 0;
         let total = 0;
         let desconto = 0;
 
         cart.map( (pizza, index) => {
 
+            // Verifica qual pizza do array corresponde com a pizza escolhida
             let pizzaItem = pizzaJson.find((item) => item.id == pizza.id);
             subtotal += pizzaItem.price * pizza.amount;
+            // Crio um nó da estrutura do carrinho para adicionar as informações
             let cartItem = selector(".models .cart--item").cloneNode(true);
+            // Com base no tamanho selecionado, irá ser concatenado o seu tamanho ao seu nome
             let pizzaSize;
             switch(pizza.size){
                 case 0 :
@@ -171,13 +175,16 @@ function updateCart() {
             }
             let pizzaName = `${pizzaItem.name} (${pizzaSize})`
 
+            // Adiciona os conteúdos do carrinho de compra
             cartItem.querySelector("img").src = pizzaItem.img;
             cartItem.querySelector(".cart--item-nome").innerHTML = pizzaName;
             cartItem.querySelector(".cart--item--qt").innerHTML = pizza.amount;
+            // Botão para adicionar mais pizzas no carrinho
             cartItem.querySelector(".cart--item-qtmais").addEventListener("click", () => {
                 pizza.amount ++;
                 updateCart();
             });
+            // Botão para diminuir as pizzas dos carrinho
             cartItem.querySelector(".cart--item-qtmenos").addEventListener("click", () => {
                 if(pizza.amount > 1){
                     pizza.amount --;
@@ -187,12 +194,14 @@ function updateCart() {
                 updateCart();
             });
 
+            // Adiciona todas as informações do carrinho dentro da div cart
             selector(".cart").append(cartItem);
         });
 
         desconto = subtotal * 0.1;
         total = subtotal - desconto;
 
+        // Adiciona todos os valores já somados e subtraidos nos elementos
         selector(".subtotal span:last-child").innerHTML = `R$ ${subtotal.toFixed(2)}`;
         selector(".desconto span:last-child").innerHTML = `R$ ${desconto.toFixed(2)}`;
         selector(".total span:last-child").innerHTML = `R$ ${total.toFixed(2)}`;
