@@ -108,10 +108,8 @@ selectorAll(".pizzaInfo--size").forEach((size, index) => {
 // Botão de adicionar ao carrinho
 selector(".pizzaInfo--addButton").addEventListener("click", () => {
     let keySize = parseInt(selector(".pizzaInfo--size.selected").getAttribute("data-key"));
-
     // Cria uma idenficação única para cada pizza do array "cart";
     let identifier = pizzaJson[key].id + "@" + keySize;
-
     // Verifica se a pizza que o usuario está adicionando é igual a alguma que já foi adicionada
     let verify = cart.findIndex((item) => item.identifier == identifier);
 
@@ -127,5 +125,65 @@ selector(".pizzaInfo--addButton").addEventListener("click", () => {
         });
     }
 
+    // Atualiza e fecha o carrinho
+    updateCart();
     closeModal();
 });
+
+function updateCart() {
+    if( cart.length > 0 ) {
+        selector("aside").classList.add("show");
+        selector(".cart").innerHTML = '';
+
+        let subtotal = 0;
+        let total = 0;
+        let desconto = 0;
+
+        cart.map( (pizza, index) => {
+
+            let pizzaItem = pizzaJson.find((item) => item.id == pizza.id);
+            subtotal += pizzaItem.price * pizza.amount;
+            let cartItem = selector(".models .cart--item").cloneNode(true);
+            let pizzaSize;
+            switch(pizza.size){
+                case 0 :
+                    pizzaSize = "P"
+                    break;
+                case 1 :
+                    pizzaSize = "M";
+                    break;
+                case 2 :
+                    pizzaSize = "G";
+                    break;
+            }
+            let pizzaName = `${pizzaItem.name} (${pizzaSize})`
+
+            cartItem.querySelector("img").src = pizzaItem.img;
+            cartItem.querySelector(".cart--item-nome").innerHTML = pizzaName;
+            cartItem.querySelector(".cart--item--qt").innerHTML = pizza.amount;
+            cartItem.querySelector(".cart--item-qtmais").addEventListener("click", () => {
+                pizza.amount ++;
+                updateCart();
+            });
+            cartItem.querySelector(".cart--item-qtmenos").addEventListener("click", () => {
+                if(pizza.amount > 1){
+                    pizza.amount --;
+                }else {
+                    cart.splice(index, 1);
+                }
+                updateCart();
+            });
+
+            selector(".cart").append(cartItem);
+        });
+
+        desconto = subtotal * 0.1;
+        total = subtotal - desconto;
+
+        selector(".subtotal span:last-child").innerHTML = `R$ ${subtotal.toFixed(2)}`;
+        selector(".desconto span:last-child").innerHTML = `R$ ${desconto.toFixed(2)}`;
+        selector(".total span:last-child").innerHTML = `R$ ${total.toFixed(2)}`;
+    }else {
+        selector("aside").classList.remove("show");
+    }
+}
